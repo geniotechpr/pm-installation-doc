@@ -13,19 +13,6 @@ ProcessMaker is an open source, workflow management software suite, which includ
 * [Redis](https://redis.io/)
 * [Docker](https://docs.docker.com/get-docker/)
 
-## Utility Shell Scripts
-Download the shell scripts below to start/check/stop all required ProcessMaker services in single commands.  
-
-Link to start sh
-
-link to status
-
-link to stop
-
-**Note** for Mac users: https://www.addictivetips.com/mac-os/run-shell-sh-script-on-macos/
-
-Remember you created these in your Linux box. Clone this repo in there, and commit those here after testing them. Then link them here.
-
 ## Installation Steps
 Click on your operating system below to reveal the installation steps to follow. 
 <details><summary>Windows (WSL2)</summary>
@@ -58,11 +45,7 @@ Add a troubleshooting section after the installation scripts saying to access th
 <details><summary>macOS</summary>
 <p>
 
-#### We can hide anything, even code!
-
-```ruby
-   puts "Hello World"
-```
+**Note** for Mac users: https://www.addictivetips.com/mac-os/run-shell-sh-script-on-macos/
 
 </p>
 </details>
