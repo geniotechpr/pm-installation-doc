@@ -35,12 +35,12 @@ Click on your operating system below to reveal the installation steps to follow.
 1. Close the current Ubuntu terminal window and open a new one. 
 1. Run the following commands to check if php, composer, and nvm were installed correctly. You should expect the php version to be 8.1.
     ```
-    php version -> php --version
+    php --version
     composer
     composer --version
     command -v nvm 
     ```
-1. Continue
+1. Continue here export NVM_DIR="$HOME/.nvm”
 
 **REMEMBER to note that scripts (including services ones) should be run in sudo.**
     
@@ -61,14 +61,4 @@ Add a troubleshooting section after the installation scripts saying to access th
 
 </p>
 </details>
-    <details><summary>CLICK ME</summary>
-<p>
 
-#### We can hide anything, even code!
-
-```ruby
-   puts "Hello World"
-```
-
-</p>
-</details>
