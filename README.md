@@ -43,6 +43,8 @@ Copy the steps over from PM Confluence page. Explore the possibility of creating
 When you are done creating scripts, finish this steps section. Then, erase the data in the Linux box and try to do the installation from scratch. With the two things to really figure out being: if we really need supervisor service and the permissions thing for nginx (www-data). Consult the notepad and google doc for more on these. 
 
 **REMEMBER to note that scripts (including services ones) should be run in sudo.**
+    
+**ALSO point out for WSL2 how to reset the data in the Linux subsystem if something goes wrong/want to start fresh**
 </p>
 </details>
 
