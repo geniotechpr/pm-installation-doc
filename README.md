@@ -41,6 +41,8 @@ Remember you created these in your Linux box. Clone this repo in there, and comm
 Copy the steps over from PM Confluence page. Explore the possibility of creating one or multiple shell scripts that have all of the commands to install the needed services. Obviously, in the cases this makes sense. For example, when installing PM itself it might not be the best idea since it will ask you (user) questions and expect data input. So it would make more sense from UX standpoint to execute on its own. 
   
 When you are done creating scripts, finish this steps section. Then, erase the data in the Linux box and try to do the installation from scratch. With the two things to really figure out being: if we really need supervisor service and the permissions thing for nginx (www-data). Consult the notepad and google doc for more on these. 
+
+**REMEMBER to note that scripts (including services ones) should be run in sudo.**
 </p>
 </details>
 
