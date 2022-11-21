@@ -40,7 +40,8 @@ Click on your operating system below to reveal the installation steps to follow.
     composer --version
     command -v nvm 
     ```
-1. Continue here export NVM_DIR="$HOME/.nvm”
+1. Run `nvm install 16.18.1` to install the expected node version and `npm install -g npm@8.9.0` to install the expected npm version. 
+1. 
 
 **REMEMBER to note that scripts (including services ones) should be run in sudo.**
     
