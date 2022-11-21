@@ -32,3 +32,4 @@ mv composer.phar /usr/local/bin/composer
 #Install NVM
 apt-get install curl
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
+export NVM_DIR="$HOME/.nvm”
