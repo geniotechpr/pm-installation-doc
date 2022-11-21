@@ -39,7 +39,7 @@ Click on your operating system below to reveal the installation steps to follow.
 1. Follow the steps for your specific Linux distribution in one of the sections below. 
 
     
-<details><summary>Ubuntu</summary>
+<details><summary>WLS2 Ubuntu</summary>
 <p>
 1.  
 
