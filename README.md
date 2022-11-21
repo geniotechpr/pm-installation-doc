@@ -45,6 +45,9 @@ When you are done creating scripts, finish this steps section. Then, erase the d
 **REMEMBER to note that scripts (including services ones) should be run in sudo.**
     
 **ALSO point out for WSL2 how to reset the data in the Linux subsystem if something goes wrong/want to start fresh**
+
+Add a troubleshooting section after the installation scripts saying to access the script source code for all of the required commands/installations and try them independently if preferred or easier to troubleshoot. 
+    
 </p>
 </details>
 
