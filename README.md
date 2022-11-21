@@ -15,14 +15,19 @@ ProcessMaker is an open source, workflow management software suite, which includ
 
 ## Utility Shell Scripts
 Download the shell scripts below to start/check/stop all required ProcessMaker services in single commands.  
+
 Link to start sh
+
 link to status
+
 link to stop
+
 **Note** for Mac users: https://www.addictivetips.com/mac-os/run-shell-sh-script-on-macos/
 
 Remember you created these in your Linux box. Clone this repo in there, and commit those here after testing them. Then link them here.
 
 ## Installation Steps
+Click on your operating system below to reveal the installation steps to follow. 
 <details><summary>Windows (WSL2)</summary>
 <p>
 
@@ -33,20 +38,19 @@ Remember you created these in your Linux box. Clone this repo in there, and comm
     - Note that you can also run a Linux distribution from PowerShell or CMD with the `wsl` command. Just make sure you are performing the installation steps on `/mnt/c/Users/<your-username>` (Linux) and **NOT** on `C:\Users\<your-username>` (Windows). 
 1. Follow the steps for your specific Linux distribution in one of the sections below. 
 
-</p>
-</details>
-
+    
 <details><summary>Ubuntu</summary>
 <p>
-Copy the steps over from PM Confluence page. Explore the possibility of creating one or multiple shell scripts that have all of the commands to install the needed services. Obviously, in the cases this makes sense. For example, when installing PM itself it might not be the best idea since it will ask you (user) questions and expect data input. So it would make more sense from UX standpoint to execute on its own. 
-  
-When you are done creating scripts, finish this steps section. Then, erase the data in the Linux box and try to do the installation from scratch. With the two things to really figure out being: if we really need supervisor service and the permissions thing for nginx (www-data). Consult the notepad and google doc for more on these. 
+1.  
 
 **REMEMBER to note that scripts (including services ones) should be run in sudo.**
     
 **ALSO point out for WSL2 how to reset the data in the Linux subsystem if something goes wrong/want to start fresh**
 
 Add a troubleshooting section after the installation scripts saying to access the script source code for all of the required commands/installations and try them independently if preferred or easier to troubleshoot. 
+    
+</p>
+</details>
     
 </p>
 </details>
