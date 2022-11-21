@@ -26,18 +26,21 @@ Click on your operating system below to reveal the installation steps to follow.
     
 <details><summary>WLS2 Ubuntu</summary>
 <p>
-1. Download [this](https://github.com/esarrit/pm-installation-doc/blob/main/install-requirements.sh) script. Using a File Explorer window, search for this path `\\wsl$\Ubuntu\home\<your-username>` and move the script there. Note that `<your-username>` is the username you specified during the WSL2 Linux installation and this **might** differ from your Windows User depending on your choice. If File Explorer can't find the path, search only for `\\wsl$\` and navigate manually to `home\<your-username>`. 
+    
+1. Download [this](https://github.com/esarrit/pm-installation-doc/blob/main/install-requirements.sh) script. 
+1. Using a File Explorer window, search for this path `\\wsl$\Ubuntu\home\<your-username>` and move the script there. Note that `<your-username>` is the username you specified during the WSL2 Linux installation and this **might** differ from your Windows User depending on your choice. If File Explorer can't find the path, search only for `\\wsl$\` and navigate manually to `home\<your-username>`.    
 1. Open the [Windows Terminal](https://learn.microsoft.com/en-us/windows/terminal/) in your machine and open a window for Ubuntu. 
     - Note that you can also run a Linux distribution from PowerShell or CMD with the `wsl` command. Just make sure you are performing the installation steps on `/mnt/c/Users/<your-username>` (Linux) and **NOT** on `C:\Users\<your-username>` (Windows). 
 1. Confirm that the script you moved to your user home directory is there by executing the `ls` command. Then, run `sudo bash install-requirements.sh`. This will install most of the required software and services needed for ProcessMaker 4. 
-1. Close the Ubuntu terminal window and open a new one. 
+1. Close the current Ubuntu terminal window and open a new one. 
 1. Run the following commands to check if php, composer, and nvm were installed correctly. You should expect the php version to be 8.1.
-```
-php version -> php --version
-composer
-composer --version
-command -v nvm 
-```
+    ```
+    php version -> php --version
+    composer
+    composer --version
+    command -v nvm 
+    ```
+1. Continue
 
 **REMEMBER to note that scripts (including services ones) should be run in sudo.**
     
@@ -55,6 +58,17 @@ Add a troubleshooting section after the installation scripts saying to access th
 <p>
 
 **Note** for Mac users: https://www.addictivetips.com/mac-os/run-shell-sh-script-on-macos/
+
+</p>
+</details>
+    <details><summary>CLICK ME</summary>
+<p>
+
+#### We can hide anything, even code!
+
+```ruby
+   puts "Hello World"
+```
 
 </p>
 </details>
