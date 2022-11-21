@@ -27,6 +27,7 @@ Click on your operating system below to reveal the installation steps to follow.
 <details><summary>WLS2 Ubuntu</summary>
 <p>
     
+#### Required Software and Services
 1. Download [this](https://github.com/esarrit/pm-installation-doc/blob/main/install-requirements.sh) script. 
 1. Using a File Explorer window, search for this path `\\wsl$\Ubuntu\home\<your-username>` and move the script there. Note that `<your-username>` is the username you specified during the WSL2 Linux installation and this **might** differ from your Windows User depending on your choice. If File Explorer can't find the path, search only for `\\wsl$\` and navigate manually to `home\<your-username>`.    
 1. Open the [Windows Terminal](https://learn.microsoft.com/en-us/windows/terminal/) in your machine and open a window for Ubuntu. 
@@ -41,8 +42,53 @@ Click on your operating system below to reveal the installation steps to follow.
     command -v nvm 
     ```
 1. Run `nvm install 16.18.1` to install the expected node version and `npm install -g npm@8.9.0` to install the expected npm version. 
-1. 
 
+#### MySQL
+1. Run the set of commands below to uninstall MySQL and MySQL server on WSL2 Ubuntu
+    ```
+    sudo apt purge mysql-server
+    sudo apt purge mysql
+    sudo apt purge mysql-client
+    sudo apt purge mysql-common mysql-server-core-*
+    sudo apt purge mysql-client-core-*
+    ```
+1. Confirm there is no MySQL by executing `which mysql` and `mysql --version`. 
+1. Install wget by running `sudo apt install wget -y` and then execute the commands below
+1. Run `wget https://dev.mysql.com/get/mysql-apt-config_0.8.12-1_all.deb` and `sudo dpkg -i mysql-apt-config_0.8.12-1_all.deb`. Choose Ubuntu Bionic and click OK, select MySQL 5.7 server and click OK.
+1. Run `sudo apt-get update`. 
+    - If you encounter an error similar to "signatures couldn't be verified because the public key is not available: NO_PUBKEY 467B942D3A79BD29", execute the following commands:
+    ```
+    sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 467B942D3A79BD29
+    sudo apt update
+    sudo apt-cache policy mysql-server
+    sudo apt install -f mysql-community-client=5.7*
+    sudo apt install -f mysql-client=5.7* mysql-community-server=5.7* mysql-server=5.7*
+    ```
+1. Run `sudo service mysql start` and sudo `mysql_secure_installation`. Press the Y key to start the installation and set the root password when prompted.
+1. Check the MySQL version using `mysql --version`. It should be version 5.7.
+1. Login to MySQL running `mysql -u root -p` and entering the root password previously set. 
+1. Create the ProcessMaker database with the `create database processmaker;` command. Then, confirm the database is available running `show databases;`. You should see processmaker in the list of databases. Use `exit;` command to terminate MySQL. 
+    
+#### Docker
+1. Download and install [Docker Desktop for Windows](https://docs.docker.com/desktop/install/windows-install/). 
+1. Open the Docker Desktop application and go to Settings > Resources > WSL INTEGRATION. 
+1. Turn on Ubuntu. Click on Apply & Restart. 
+1. Reopen the Docker Desktop app, navigate to WSL INTEGRATION, and ensure your screen looks like the image below.
+    
+    ![Screenshot (17)](https://user-images.githubusercontent.com/47648788/203155035-9e5fcc4d-62c5-4c59-9985-eb51f65acdd6.png)
+1. Restart your computer. 
+    
+#### Install ProcessMaker
+1. Open a Ubuntu terminal window.
+1. In the home directory, clone the repository by running `git clone https://github.com/ProcessMaker/processmaker.git ~/src/processmaker`. 
+1. Download the [start-services](https://github.com/esarrit/pm-installation-doc/blob/main/start-services.sh),[status-services](https://github.com/esarrit/pm-installation-doc/blob/main/status-services.sh), and [stop-services](https://github.com/esarrit/pm-installation-doc/blob/main/status-services.sh) scripts. Move them to `\\wsl$\Ubuntu\home\<your-username>` like you did at the beginning of this guide with the installation script. 
+1. Start the services by running `sudo bash start-services.sh`. Check the status of the services by running `sudo bash status-services.sh`. In case you would like to stop services at any point to restart them or shut down, run `sudo bash stop-services.sh`. 
+1. Once services are running... (install processmaker). 
+    
+#### Configurations
+1. NGINX, PHP, WINDOWS. See Google doc steps/notes for more on these. 
+   
+    
 **REMEMBER to note that scripts (including services ones) should be run in sudo.**
     
 **ALSO point out for WSL2 how to reset the data in the Linux subsystem if something goes wrong/want to start fresh**
