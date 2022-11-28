@@ -24,8 +24,8 @@ Click on your operating system below to reveal the installation steps to follow.
 1. Follow the steps for your specific Linux distribution in one of the sections below. 
 
     
-<details><summary>WLS2 Ubuntu</summary>
-<p>
+    <details><summary>WLS2 Ubuntu</summary>
+    <p>
     
 #### Required Software and Services
 1. Download [this](https://github.com/esarrit/pm-installation-doc/blob/main/install-requirements.sh) script. 
@@ -188,8 +188,8 @@ If you run into issues after entering the dev URL into your browser, below are s
 - Previously, we used the `chown` command to change the owner of the processmaker directory to be www-data. However, if you still run into issues due to permissions, there are some things you can try to troubleshoot. Use `ls -l` to check current permissions and the [chmod](https://linux.die.net/man/1/chmod) command to adjust permissions as needed. Again, www-data needs to have write permissions for the processmaker directory and specific files within it.
 - For further troubleshooting, access the NGINX error logs in `/var/log/nginx`. 
     
-</p>
-</details>
+    </p>
+    </details>
     
 </p>
 </details>
