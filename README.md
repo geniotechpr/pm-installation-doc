@@ -94,7 +94,7 @@ Click on your operating system below to reveal the installation steps to follow.
 #### Configurations
 
 ##### Configure the .env File
-1. After the installation process is finished, add the configurations below to your .env file. This file exists within the processmaker directory. You can easily edit directly on the command line by running `sudo vim .env`. If unfamiliar with vim or need a refresher, see [this](https://www.redhat.com/sysadmin/beginners-guide-vim) resource. 
+1. After the installation process is finished, add the configurations below to your .env file. This file exists within the processmaker directory. You can easily edit directly on the command line by running `sudo vim .env`. If you are unfamiliar with vim or need a refresher, see [this](https://www.redhat.com/sysadmin/beginners-guide-vim) resource. 
     ```
     # Run laravel echo server with HTTP instead of HTTPS
     LARAVEL_ECHO_SERVER_PROTO=http
@@ -179,26 +179,14 @@ Click on your operating system below to reveal the installation steps to follow.
 1. Run `npm install --allow-root` and then `npm run dev`. 
 1. Perform `cd ..` to navigate to the src parent directory, and perform the following command: `chown -R www-data:www-data processmaker`. 
 1. On your Windows system, open a browser window and enter `http://pmdev`. You should now see ProcessMaker load and arrive at the login screen. 
-    - In this step, it is very important for NGINX to have the appropriate user/group permissions as www-data. ....
-    
-    Communicate this idea:
-    You will need to make sure that the directory you are writing to allows for www-data to write to it. Typically, you will want to put that directory in a place that is away from other files etc...
-    
-    Then this one:
-    In the command above, we set the www-data user to be the owner of the processmaker directory
-    
-    Then mention that you can use  ls -l to check permissions and chmod to modify further if needed or run into issues. 
-    
-    nginx need to have the right permissions for user/group. Especially after changing owner via the chown command. 
-    
-    Also remind user that services need to be running. Leverage scripts for this. 
 
-   
-    
-    
-**ALSO point out for WSL2 how to reset the data in the Linux subsystem if something goes wrong/want to start fresh**
+#### Troubleshooting
+If you run into issues after entering the dev URL into your browser, below are some things to note.
 
-Add a troubleshooting section after the installation scripts saying to access the script source code for all of the required commands/installations and try them independently if preferred or easier to troubleshoot. 
+- Double check all services are running by executing `sudo bash status-services.sh`. 
+- It is very important for NGINX to have the appropriate permissions as www-data to write to the processmaker directory in order for the web app to work. www-data is the user that web servers on Ubuntu, such as NGINX, use by default for normal operation. 
+- Previously, we used the `chown` command to change the owner of the processmaker directory to be www-data. However, if you still run into issues due to permissions, there are some things you can try to troubleshoot. Use `ls -l` to check current permissions and the [chmod](https://linux.die.net/man/1/chmod) command to adjust permissions as needed. Again, www-data needs to have write permissions for the processmaker directory and specific files within it.
+- For further troubleshooting, access the NGINX error logs in `/var/log/nginx`. 
     
 </p>
 </details>
