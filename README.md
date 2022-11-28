@@ -24,24 +24,24 @@ Click on your operating system below to reveal the installation steps to follow.
 1. Follow the steps for your specific Linux distribution in one of the sections below. 
 
 
-    <details><summary>WLS2 Ubuntu</summary>
-    <p>
+<details><summary>WLS2 Ubuntu</summary>
+<p>
     
-    #### Required Software and Services
-    1. Download [this](https://github.com/esarrit/pm-installation-doc/blob/main/install-requirements.sh) script. 
-    1. Using a File Explorer window, search for this path `\\wsl$\Ubuntu\home\<your-username>` and move the script there. Note that `<your-username>` is the username you specified during the WSL2 Linux installation and this **might** differ from your Windows User depending on your choice. If File Explorer can't find the path, search only for `\\wsl$\` and navigate manually to `home\<your-username>`.    
-    1. Open the [Windows Terminal](https://learn.microsoft.com/en-us/windows/terminal/) in your machine and open a window for Ubuntu. 
-      - Note that you can also run a Linux distribution from PowerShell or CMD with the `wsl` command. Just make sure you are performing the installation steps on `/mnt/c/Users/<your-username>` (Linux) and **NOT** on `C:\Users\<your-username>` (Windows). 
-    1. Confirm that the script you moved to your user home directory is there by executing the `ls` command. Then, run `sudo bash install-requirements.sh`. This will install most of the required software and services needed for ProcessMaker 4. 
-    1. Close the current Ubuntu terminal window and open a new one. 
-    1. Run the following commands to check if php, composer, and nvm were installed correctly. You should expect the php version to be 8.1.
-      ```
-      php --version
-      composer
-      composer --version
-      command -v nvm 
-      ```
-  1. Run `nvm install 16.18.1` to install the expected node version and `npm install -g npm@8.9.0` to install the expected npm version. 
+#### Required Software and Services
+1. Download [this](https://github.com/esarrit/pm-installation-doc/blob/main/install-requirements.sh) script. 
+1. Using a File Explorer window, search for this path `\\wsl$\Ubuntu\home\<your-username>` and move the script there. Note that `<your-username>` is the username you specified during the WSL2 Linux installation and this **might** differ from your Windows User depending on your choice. If File Explorer can't find the path, search only for `\\wsl$\` and navigate manually to `home\<your-username>`.    
+1. Open the [Windows Terminal](https://learn.microsoft.com/en-us/windows/terminal/) in your machine and open a window for Ubuntu. 
+    - Note that you can also run a Linux distribution from PowerShell or CMD with the `wsl` command. Just make sure you are performing the installation steps on `/mnt/c/Users/<your-username>` (Linux) and **NOT** on `C:\Users\<your-username>` (Windows). 
+1. Confirm that the script you moved to your user home directory is there by executing the `ls` command. Then, run `sudo bash install-requirements.sh`. This will install most of the required software and services needed for ProcessMaker 4. 
+1. Close the current Ubuntu terminal window and open a new one. 
+1. Run the following commands to check if php, composer, and nvm were installed correctly. You should expect the php version to be 8.1.
+  ```
+  php --version
+  composer
+  composer --version
+  command -v nvm 
+  ```
+1. Run `nvm install 16.18.1` to install the expected node version and `npm install -g npm@8.9.0` to install the expected npm version. 
 
 #### MySQL
 1. Run the set of commands below to uninstall MySQL and MySQL server on WSL2 Ubuntu
@@ -188,8 +188,8 @@ If you run into issues after entering the dev URL into your browser, below are s
 - Previously, we used the `chown` command to change the owner of the processmaker directory to be www-data. However, if you still run into issues due to permissions, there are some things you can try to troubleshoot. Use `ls -l` to check current permissions and the [chmod](https://linux.die.net/man/1/chmod) command to adjust permissions as needed. Again, www-data needs to have write permissions for the processmaker directory and specific files within it.
 - For further troubleshooting, access the NGINX error logs in `/var/log/nginx`. 
     
-    </p>
-    </details>
+</p>
+</details>
     
 </p>
 </details>
