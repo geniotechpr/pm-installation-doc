@@ -83,13 +83,118 @@ Click on your operating system below to reveal the installation steps to follow.
 1. In the home directory, clone the repository by running `git clone https://github.com/ProcessMaker/processmaker.git ~/src/processmaker`. 
 1. Download the [start-services](https://github.com/esarrit/pm-installation-doc/blob/main/start-services.sh),[status-services](https://github.com/esarrit/pm-installation-doc/blob/main/status-services.sh), and [stop-services](https://github.com/esarrit/pm-installation-doc/blob/main/status-services.sh) scripts. Move them to `\\wsl$\Ubuntu\home\<your-username>` like you did at the beginning of this guide with the installation script. 
 1. Start the services by running `sudo bash start-services.sh`. Check the status of the services by running `sudo bash status-services.sh`. In case you would like to stop services at any point to restart them or shut down, run `sudo bash stop-services.sh`. 
-1. Once services are running... (install processmaker). 
-    
+1. Once services are running, move into the processmaker directory `cd ~/src/processmaker`. 
+1. Within the processmaker directory, run the following set of commands: `composer install --ignore-platform-reqs` and `php artisan processmaker:install`. 
+    - If you experience an error of `DOMDOCUMENT` not being found, run `sudo apt-get install php8.1-xml`. Then, delete the .env file by executing `sudo rm .env`. Lastly, re-run `php artisan processmaker:install`. 
+1. After this, the ProcessMaker installation process will start. Please be patient, as this may take some time (~ 5-15 minutes). Throughout the install, you will be asked to enter a few configuration parameters. Some guiding principles for entering these parameters:
+    - Use suggested values wherever possible. 
+    - For MySQL, use `root` as username and the password you configured previously during the MySQL set-up. 
+    - The instance URL is not that important. You can input any URL that you would like. To run ProcessMaker locally we will be using another URL later.
+
 #### Configurations
-1. NGINX, PHP, WINDOWS. See Google doc steps/notes for more on these. 
+
+##### Configure the .env File
+1. After the installation process is finished, add the configurations below to your .env file. This file exists within the processmaker directory. You can easily edit directly on the command line by running `sudo vim .env`. If unfamiliar with vim or need a refresher, see [this](https://www.redhat.com/sysadmin/beginners-guide-vim) resource. 
+    ```
+    # Run laravel echo server with HTTP instead of HTTPS
+    LARAVEL_ECHO_SERVER_PROTO=http
+    LARAVEL_ECHO_SERVER_SSL_KEY=""
+    LARAVEL_ECHO_SERVER_SSL_CERT=""
+
+    # Don't require a valid cert for SDK calls in script tasks
+    API_SSL_VERIFY=0
+
+    # Run `which node` to get the path to nodejs
+    NODE_BIN_PATH=/path/to/node/v14.4.0/bin/node
+
+    # Run `which docker` to get the path to the docker executable
+    PROCESSMAKER_SCRIPTS_DOCKER=/usr/local/bin/docker
+
+    # Allow cookies to be served over HTTP
+    SESSION_SECURE_COOKIE=false
+
+    # Allow connections from script tasks to connect back to your host
+    DOCKER_HOST_URL=http://host.docker.internal
+
+    # Allow connections from script tasks to connect back to your host
+    CACHE_DRIVER=redis
+    ```
+1. Crosscheck the “.env“ file and ensure no key is repeated within the file. 
+1. Run `which docker` in the Ubuntu terminal window to get the value to set as `PROCESSMAKER_SCRIPTS_DOCKER` in the .env file.
+1. Run `which node` in the Ubuntu terminal window to get the value to set as `NODE_BIN_PATH` in the .env file. 
+1. Save the .env file. 
+1. Clear the cache by running `php artisan optimize:clear`. **This command needs to be performed every time changes are made to the .env file.**
+
+##### Configure PHP FPM
+1. Open a new Ubuntu terminal window. 
+1. Change into pool.d directory: `cd  /etc/php/8.1/fpm/pool.d`. Inside this directory, there will be a www.conf file. Use `sudo vim www.conf` to open it. 
+1. Look for the "listen" value and modify it by appending `9000;` to the start of the line, as shown below. 
+![Screenshot (21)_LI](https://user-images.githubusercontent.com/47648788/204310557-86b1c8cb-129b-4cf5-b5db-ee2a907c4fd7.jpg)
+1. Save your changes to the www.conf file. 
+
+##### Configure NGINX
+1. Run the `pwd` command on your processmaker directory. Store that path in a notepad. 
+1. Navigate to NGINX sites-enabled by running `cd /etc/nginx/sites-enabled`. Open the default file by running `sudo vim default`. 
+1. Replace what's inside the file with the configuration below. 
+    ```
+    server {
+        listen 80;
+        server_name pmdev host.docker.internal;
+        root processmaker_project_path/public;
+    
+        index index.php index.html index.htm;
+
+        location / {
+            try_files $uri $uri/ /index.php$is_args$args;
+        }
+
+        error_page   500 502 503 504  /50x.html;
+        location = /50x.html {
+            root   html;
+        }
+
+        location ~ \.php$ {
+            try_files $uri $uri/ /index.php =404;
+            fastcgi_pass   127.0.0.1:9000;
+            fastcgi_index  index.php;
+            fastcgi_param  SCRIPT_FILENAME  /$realpath_root$fastcgi_script_name;
+            include        fastcgi_params;
+            fastcgi_read_timeout 300;
+        }
+    }
+    ```
+1. Within the configuration above, replace `processmaker_project_path` with the processmaker directory path stored on your notepad.
+1. Save your changes to the default file. 
+
+##### Configure Windows
+1. Open a Ubuntu terminal window and run `ifconfig`. Store the IP address on a notepad. The IP address is highlighted in the image below.
+![Screenshot (22)_LI](https://user-images.githubusercontent.com/47648788/204313414-fa395d2d-3cc0-485c-8934-63b3ec944ec7.jpg)
+1. On your Windows system, open File Explorer and go to C:\Windows\System32\drivers\etc. 
+1. Open the hosts file as an Administrator. 
+1. Add the line `ifconfig_value pmdev` to the end of the file. Replace "ifconfig_value" with the IP address value you previously retrieved. 
+1. Save your changes. 
+
+#### Compile, Configure, and Test the ProcessMaker Project
+1. Open a Ubuntu terminal window and navigate to the processmaker directory. 
+1. Run `npm install --allow-root` and then `npm run dev`. 
+1. Perform `cd ..` to navigate to the src parent directory, and perform the following command: `chown -R www-data:www-data processmaker`. 
+1. On your Windows system, open a browser window and enter `http://pmdev`. You should now see ProcessMaker load and arrive at the login screen. 
+    - In this step, it is very important for NGINX to have the appropriate user/group permissions as www-data. ....
+    
+    Communicate this idea:
+    You will need to make sure that the directory you are writing to allows for www-data to write to it. Typically, you will want to put that directory in a place that is away from other files etc...
+    
+    Then this one:
+    In the command above, we set the www-data user to be the owner of the processmaker directory
+    
+    Then mention that you can use  ls -l to check permissions and chmod to modify further if needed or run into issues. 
+    
+    nginx need to have the right permissions for user/group. Especially after changing owner via the chown command. 
+    
+    Also remind user that services need to be running. Leverage scripts for this. 
+
    
     
-**REMEMBER to note that scripts (including services ones) should be run in sudo.**
     
 **ALSO point out for WSL2 how to reset the data in the Linux subsystem if something goes wrong/want to start fresh**
 
