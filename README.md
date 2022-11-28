@@ -24,8 +24,8 @@ Click on your operating system below to reveal the installation steps to follow.
 1. Follow the steps for your specific Linux distribution in one of the sections below. 
 
 
-  <details><summary>WLS2 Ubuntu</summary>
-  <p>
+    <details><summary>WLS2 Ubuntu</summary>
+    <p>
     
   #### Required Software and Services
   1. Download [this](https://github.com/esarrit/pm-installation-doc/blob/main/install-requirements.sh) script. 
