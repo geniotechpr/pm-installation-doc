@@ -184,6 +184,7 @@ Click on your operating system below to reveal the installation steps to follow.
     If you run into issues after entering the dev URL into your browser, below are some things to note.
 
     - Double check all services are running by executing `sudo bash status-services.sh`. 
+    - Confirm that the correct IP address from `ifconfig` step obtained from your WSL Ubuntu machine matches the one placed in C:\Windows\System32\drivers\etc\hosts. **This can change if your systems is restarted.**
     - It is very important for NGINX to have the appropriate permissions as www-data to write to the processmaker directory in order for the web app to work. www-data is the user that web servers on Ubuntu, such as NGINX, use by default for normal operation. 
     - Previously, we used the `chown` command to change the owner of the processmaker directory to be www-data. However, if you still run into issues due to permissions, there are some things you can try to troubleshoot. Use `ls -l` to check current permissions and the [chmod](https://linux.die.net/man/1/chmod) command to adjust permissions as needed. Again, www-data needs to have write permissions for the processmaker directory and specific files within it.
     - For further troubleshooting, access the NGINX error logs in `/var/log/nginx`. 
