@@ -175,6 +175,7 @@ Click on your operating system below to reveal the installation steps to follow.
 
     #### Compile, Configure, and Test the ProcessMaker Project
     1. Open a Ubuntu terminal window and navigate to the processmaker directory. 
+    1. Ensure that services are running with `sudo bash status-services.sh`.
     1. Run `npm install --allow-root` and then `npm run dev`. 
     1. Perform `cd ..` to navigate to the src parent directory, and perform the following command: `chown -R www-data:www-data processmaker`. 
     1. On your Windows system, open a browser window and enter `http://pmdev`. You should now see ProcessMaker load and arrive at the login screen. 
