@@ -1,6 +1,6 @@
 # ProcessMaker 4 Installation Guide
 ## Overview
-ProcessMaker is an open source, workflow management software suite, which includes tools to automate your workflow, design forms, create documents, assign roles and users, create routing rules, and map an individual process quickly and easily. This file describes the requirements and steps to perform a local installation on different operating systems.
+[ProcessMaker](http://processmaker.com/) is an open source, workflow management software suite, which includes tools to automate your workflow, design forms, create documents, assign roles and users, create routing rules, and map an individual process quickly and easily. This file describes the requirements and steps to perform a local installation on different operating systems.
 
 ## System Requirements
 * [Composer 2](https://getcomposer.org/)
@@ -198,7 +198,7 @@ Click on your operating system below to reveal the installation steps to follow.
 <details><summary>macOS</summary>
 <p>
 
-**Note** for Mac users: https://www.addictivetips.com/mac-os/run-shell-sh-script-on-macos/
+**TBD**
 
 </p>
 </details>
